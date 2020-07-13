@@ -6,7 +6,7 @@ const restrict = require("../middleware/restrict")
 
 const router = express.Router()
 
-router.get("/users", restrict("normal"), async (req, res, next) => {
+router.get("/users", restrict(0), async (req, res, next) => {
 	try {
 		res.json(await Users.find())
 	} catch(err) {
@@ -44,7 +44,7 @@ router.post("/login", async (req, res, next) => {
 
 		if (!user) {
 			return res.status(401).json({
-				message: "Invalid Credentials",
+				message: "You shall not pass!",
 			})
 		}
 
@@ -52,7 +52,7 @@ router.post("/login", async (req, res, next) => {
 
 		if (!passwordValid) {
 			return res.status(401).json({
-				message: "Invalid Credentials",
+				message: "You shall not pass!",
 			})
 		}
 
