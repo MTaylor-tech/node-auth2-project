@@ -6,7 +6,7 @@ const restrict = require("../middleware/restrict")
 
 const router = express.Router()
 
-router.get("/users", restrict(0), async (req, res, next) => {
+router.get("/api/users", restrict(0), async (req, res, next) => {
 	try {
 		res.json(await Users.find())
 	} catch(err) {
@@ -14,7 +14,7 @@ router.get("/users", restrict(0), async (req, res, next) => {
 	}
 })
 
-router.post("/users", async (req, res, next) => {
+router.post("/api/register", async (req, res, next) => {
 	try {
 		const { username, password, department } = req.body
 		const user = await Users.findBy({ username }).first()
@@ -37,7 +37,7 @@ router.post("/users", async (req, res, next) => {
 	}
 })
 
-router.post("/login", async (req, res, next) => {
+router.post("/api/login", async (req, res, next) => {
 	try {
 		const { username, password } = req.body
 		const user = await Users.findBy({ username }).first()
